@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/sambakker4/blog_aggregator/internal/config"
 	"log"
-	"fmt"
 	"os"
 	"errors"
 )
@@ -21,5 +20,8 @@ func main() {
 		log.Fatal(errors.New("Must have at least two arguments"))
 	}
 	currentCommand := command{name: args[1], args: args[2:]}
-	commandsMap.run(&currentState, currentCommand)
+	err = commandsMap.run(&currentState, currentCommand)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

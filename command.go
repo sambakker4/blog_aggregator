@@ -21,6 +21,5 @@ func (c *commands) run(s *state, cmd command) error {
 	if _, ok := c.cmds[cmd.name]; !ok {
 		return fmt.Errorf("Command %v does not exist", cmd.name)
 	}
-	c.cmds[cmd.name](s, cmd)
-	return nil
+	return c.cmds[cmd.name](s, cmd)
 }
