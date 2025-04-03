@@ -22,6 +22,7 @@ func main() {
 	commandsMap.register("login", handlerLogin)
 	commandsMap.register("register", handlerRegister)
 	commandsMap.register("reset", handlerReset)
+	commandsMap.register("users", handlerGetUsers)
 
 	args := os.Args
 
@@ -33,6 +34,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer db.Close()
 
 	dbQueries := database.New(db)
 	currentState.db = dbQueries
