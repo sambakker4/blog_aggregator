@@ -21,6 +21,7 @@ func main() {
 	commandsMap := commands{cmds: make(map[string]func(*state, command)error)}
 	commandsMap.register("login", handlerLogin)
 	commandsMap.register("register", handlerRegister)
+	commandsMap.register("reset", handlerReset)
 
 	args := os.Args
 
