@@ -122,3 +122,23 @@ func handlerNewFeed(s *state, cmd command) error {
 	fmt.Println(feed)
 	return nil 
 }
+
+func handlerFeeds(s *state, cmd command) error {
+	feeds, err := s.db.GetFeeds(context.Background())	
+	if err != nil {
+		return err
+	}
+
+	for _, feed := range feeds {
+		fmt.Println("Name:",feed.Name)
+		fmt.Println("URL:", feed.Url)
+		user, err := s.db.GetUserByID(context.Background(), feed.UserID)
+		if err != nil {
+			return err
+		}
+		fmt.Println("Creator:", user.Name)
+		fmt.Println("-----------------------------")
+	}
+	return nil
+}
+

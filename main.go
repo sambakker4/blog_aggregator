@@ -25,6 +25,7 @@ func main() {
 	commandsMap.register("users", handlerGetUsers)
 	commandsMap.register("agg", handlerAgg)
 	commandsMap.register("addfeed", handlerNewFeed)
+	commandsMap.register("feeds", handlerFeeds)
 
 	args := os.Args
 
