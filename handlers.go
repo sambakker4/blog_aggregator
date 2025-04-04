@@ -84,3 +84,41 @@ func handlerGetUsers(s *state, cmd command) error {
 
 	return nil
 }
+
+func handlerAgg(s *state, cmd command) error {
+	feed, err := fetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")	
+	if err != nil {
+		return err
+	}
+	fmt.Println(*feed)
+	return nil
+}
+
+func handlerNewFeed(s *state, cmd command) error {
+	if len(cmd.args) < 2 {
+		return errors.New("add feed requires a <name> and <url> arguments")
+	}
+	name := cmd.args[0]
+	url := cmd.args[1]
+
+	username := s.config.CurrentUserName
+	user, err := s.db.GetUser(context.Background(), username)
+	if err != nil {
+		return err
+	}
+	user_id := user.ID
+	
+	feed, err := s.db.CreateFeed(context.Background(), database.CreateFeedParams{
+		ID: uuid.New(),
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+		Name: name,
+		Url: url,
+		UserID: user_id,
+	})
+	if err != nil {
+		return err
+	}
+	fmt.Println(feed)
+	return nil 
+}

@@ -23,6 +23,8 @@ func main() {
 	commandsMap.register("register", handlerRegister)
 	commandsMap.register("reset", handlerReset)
 	commandsMap.register("users", handlerGetUsers)
+	commandsMap.register("agg", handlerAgg)
+	commandsMap.register("addfeed", handlerNewFeed)
 
 	args := os.Args
 
