@@ -24,10 +24,10 @@ func main() {
 	commandsMap.register("reset", handlerReset)
 	commandsMap.register("users", handlerGetUsers)
 	commandsMap.register("agg", handlerAgg)
-	commandsMap.register("addfeed", handlerNewFeed)
+	commandsMap.register("addfeed", middlewareLoggedIn(handlerNewFeed))
 	commandsMap.register("feeds", handlerFeeds)
-	commandsMap.register("follow", handlerFollow)
-	commandsMap.register("following", handlerFollowing)
+	commandsMap.register("follow", middlewareLoggedIn(handlerFollow))
+	commandsMap.register("following", middlewareLoggedIn(handlerFollowing))
 
 	args := os.Args
 
