@@ -1,7 +1,7 @@
 package main
 
 import(
-	"github.com/sambakker4/blog_aggregator/internal/database"
+	"github.com/sambakker4/gator/internal/database"
 	"context"
 )
 

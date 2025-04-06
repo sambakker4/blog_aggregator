@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"context"
 	"github.com/google/uuid"
-	"github.com/sambakker4/blog_aggregator/internal/database"
+	"github.com/sambakker4/gator/internal/database"
 	"time"
 )
 

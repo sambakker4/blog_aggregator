@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/sambakker4/blog_aggregator/internal/database"
-	"github.com/sambakker4/blog_aggregator/internal/config"
+	"github.com/sambakker4/gator/internal/database"
+	"github.com/sambakker4/gator/internal/config"
 )
 
 type state struct {

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/sambakker4/blog_aggregator/internal/config"
+	"github.com/sambakker4/gator/internal/config"
 	"log"
 	"os"
 	"errors"
 	"database/sql"
-	"github.com/sambakker4/blog_aggregator/internal/database"
+	"github.com/sambakker4/gator/internal/database"
 )
 
 import _ "github.com/lib/pq"

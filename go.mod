@@ -1,4 +1,4 @@
-module github.com/sambakker4/blog_aggregator
+module github.com/sambakker4/gator
 
 go 1.23.3
 
