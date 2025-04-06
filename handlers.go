@@ -86,11 +86,20 @@ func handlerGetUsers(s *state, cmd command) error {
 }
 
 func handlerAgg(s *state, cmd command) error {
-	feed, err := fetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")	
+	if len(cmd.args) == 0 {
+		return errors.New("aggerate requires an argument <time_between_reqs>")
+	}
+	
+	timeBetweenRequests, err := time.ParseDuration(cmd.args[0])
 	if err != nil {
 		return err
 	}
-	fmt.Println(*feed)
+	fmt.Printf("Collecting feed every %v\n\n", timeBetweenRequests)
+	
+	ticker := time.NewTicker(timeBetweenRequests)
+	for ; ; <-ticker.C {
+		scrapeFeeds(s)
+	}
 	return nil
 }
 
