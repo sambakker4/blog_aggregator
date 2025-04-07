@@ -7,6 +7,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/sambakker4/gator/internal/database"
 	"time"
+	"strconv"
 )
 
 func handlerLogin(s *state, cmd command) error {
@@ -94,11 +95,14 @@ func handlerAgg(s *state, cmd command) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Collecting feed every %v\n\n", timeBetweenRequests)
+	fmt.Printf("\nCollecting feed every %v\n\n", timeBetweenRequests)
 	
 	ticker := time.NewTicker(timeBetweenRequests)
 	for ; ; <-ticker.C {
-		scrapeFeeds(s)
+		err = scrapeFeeds(s)
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -214,5 +218,37 @@ func handlerUnfollow(s *state, cmd command, user database.User) error {
 	}
 
 	fmt.Println("User:", user.Name, "successfully unfollowed:", feed.Name)	
+	return nil
+}
+
+func handlerBrowse(s *state, cmd command, user database.User) error {
+	var limit int32
+	limit = 2
+
+	if len(cmd.args) != 0 {
+		val, err := strconv.ParseInt(cmd.args[0], 10, 32)
+		if err != nil {
+			return err
+		}
+		limit = int32(val)
+	}
+
+	posts, err := s.db.GetPostsForUser(context.Background(), database.GetPostsForUserParams{
+		ID: user.ID,
+		Limit: limit,
+	})
+	if err != nil {
+		return err
+	}
+
+	for _, post := range posts {
+		fmt.Println("\n\n", post.Title)
+		fmt.Println("--------------------------------------------------------------------------")
+		fmt.Println("Link:", post.Url)
+		fmt.Println("--------------------------------------------------------------------------")
+		fmt.Println(post.Description)
+		fmt.Println("--------------------------------------------------------------------------")
+	}
+
 	return nil
 }

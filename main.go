@@ -29,6 +29,7 @@ func main() {
 	commandsMap.register("follow", middlewareLoggedIn(handlerFollow))
 	commandsMap.register("following", middlewareLoggedIn(handlerFollowing))
 	commandsMap.register("unfollow", middlewareLoggedIn(handlerUnfollow))
+	commandsMap.register("browse", middlewareLoggedIn(handlerBrowse))
 
 	args := os.Args
 
