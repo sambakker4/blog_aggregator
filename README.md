@@ -30,3 +30,16 @@ sudo apt install postgresql postgresql-contrib`
 `brew install go`
 ### Insure installed
 `go version`
+
+## Install Gator
+`go install github.com/sambakker4/gator`
+
+## Set Up
+### Enter the psql shell
+### Mac `psql postgres`
+### Linux `sudo -u postgres psql`
+
+### Create a Database, run this in the psql shell
+`CREATE DATABASE gator;`
+### Change password (Linux Only)
+`ALTER USER postgres PASSWORD 'postgres';`
