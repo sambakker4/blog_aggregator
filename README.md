@@ -44,14 +44,14 @@ Create a file in your root directory called `.gatorconfig.json` and paste in the
 ```
 
 ## Commands
-`gator register <username>` registers and logins a user
-`gator login <username>` logins specified user
-`gator reset` resets database
-`gator users` lists users
-`gator agg <time_between_reqs>` aggregates feeds of the current user in an infinite loop
-`gator addfeed <name> <url>` adds a feed by the current user
-`gator feeds` lists all feeds
-`gator follow <url>` makes the current user follow a feed
-`gator following` lists all the feeds the current user is following
-`gator unfollow <url>` unfollows the current user from specified feed
-`gator browse <limit>(optional)` browses posts from feeds the current user is following
+- `gator register <username>` registers and logins a user
+- `gator login <username>` logins specified user
+- `gator reset` resets database
+- `gator users` lists users
+- `gator agg <time_between_reqs>` aggregates feeds of the current user in an infinite loop
+- `gator addfeed <name> <url>` adds a feed by the current user
+- `gator feeds` lists all feeds
+- `gator follow <url>` makes the current user follow a feed
+- `gator following` lists all the feeds the current user is following
+- `gator unfollow <url>` unfollows the current user from specified feed
+- `gator browse <limit>(optional)` browses posts from feeds the current user is following
